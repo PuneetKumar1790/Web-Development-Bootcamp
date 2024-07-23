@@ -1,0 +1,90 @@
+//data modelling
+// Define structure and breakpoint  and how to store 
+import mongoose from 'mongoose';
+
+const subTodoSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+    complete: {
+      type: Boolean,
+      default: false,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  },
+  { timestamps: true } //Timestamp tell created at and updated at
+);
+
+export const SubTodo = mongoose.model('SubTodo', subTodoSchema);// kya naam rakhe aur kiske basispe naam rakhe 
+
+
+
+
+
+
+
+
+-=-=-=-=-=----=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+import mongoose from 'mongoose';
+
+const todoSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+    complete: {
+      type: Boolean,
+      default: false,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    subTodos: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'SubTodo',
+      },
+    ], // Array of Sub-Todos
+  },
+  { timestamps: true }
+);
+
+export const Todo = mongoose.model('Todo', todoSchema);
+
+
+
+
+=-=-==-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+
+import mongoose from 'mongoose';
+
+const subTodoSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+    complete: {
+      type: Boolean,
+      default: false,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId, //relation to another file (give reference )
+      ref: 'User',
+    },
+  },
+  { timestamps: true }
+);
+
+export const SubTodo = mongoose.model('SubTodo', subTodoSchema);
+
